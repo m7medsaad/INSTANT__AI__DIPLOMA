@@ -1,0 +1,175 @@
+Computer architecture comprises rules, methods, and procedures that describe the execution and functionality of the entire computer system. In general terms, computer architecture refers to how a computer system is designed using compatible technologies. This article will tell you how computer architecture is classified into a disciplinary method.
+
+The term architecture in computer literature signifies the efforts of Sir Lyle R. Johnson and Sir Frederick P. Brooks, members of the Machine Organization department, in 1959. Sir Johnson noted his description of formats, instruction types, hardware limitations, along with speed improvements. These were at the level of system architecture, a term that is more useful than machine organization. Succeedingly, a computer user can use that term in many less precise methods.
+
+Earlier, computer architects designed computer architecture on paper. It was then directly built into a final hardware form. Later, they assembled computer architecture designs materially in the form of transistor-transistor logic (TTL) computers. By the 1990s, new computer architectures are typically built, examined, and tweaked inside another computer architecture, in a computer architecture simulator, or the interior part of an FPGA, as a microprocessor before perpetrating to the ultimate hardware form.
+Here are the various categories of architecture that exist in our computer systems.
+
+    Von-Neumann Architecture
+    Harvard Architecture
+    Instruction Set Architecture
+    Micro-architecture
+    System Design
+
+John von Neumann coined and developed this architecture. The computer we are using nowadays is based on the von Neumann architecture. It has some concepts. It is also known as Princeton architecture. It renders a unique design for the electronic digital systems having the following components:
+
+    A Central Processing Unit (CPU) with arithmetic and logic unit (ALU) and processors with attached registers.
+    A memory that can store data and instructions.
+    External mass storage or secondary storage.
+    A Control Unit (CU) with the ability to hold instructions in the program counter (PC) or instruction register (IR).
+    Input and output mechanisms and peripherals.
+
+The von Neumann design thus constitutes the foundation of modern computing. The Harvard architecture, a similar model, had committed data addresses and buses for reading and writing to memory. It wins because von Neumann's architecture was easier to execute in real hardware.
+
+Harvard Architecture consists of code and data laid in distinct memory sections. It requires a separate memory block for data and instruction. It has solely contained data storage within the Central Processing Unit (CPU). A single collection of clock cycles is needed. Data accessibility in one memory is done by a single memory location in the case of Harvard architecture.
+
+One typical example is the Punch card. Moreover, modern computers may have the latest CPU processes for both methods but disparate them in a hardware design.
+
+Another notable digital computer architecture is the Instruction Set Architecture. The architecture holds a collection of instructions that the processor renders and surmises. It consists of two instruction sets: RISC (Reduced Instruction Set Computer) and CISC (Complex Instruction Set Computer).
+
+It enables versatile implementations of an ISA; commonly differ in features such as performance, physical size, and monetary price. It empowers the evolution of the micro-architectures, implementing ISA as an exclusive, higher-performance system that can run software on preceding generations of execution.
+
+Micro-architecture is the structural design of a microprocessor. This computer organization leverages a method where the instruction set architecture holds a built-in processor. Engineers and hardware scientists implement instruction set architecture (ISA) with various micro-architectures that vary because of changing technology. It includes the technologies used, resources, and methods. Using this, the processors physically devised to administer a particular instruction set.
+
+Simply, it is a logical form of all electronic elements and data pathways present in the microprocessor, designed in a specific way. It allows for the optimal completion of instructions. In academe, it is called computer organization.
+System design itself defines a design that can serve user requirements like system architecture, computer modules having various interfaces, and data management within a system. The term product development is connective to the system design. It is the process by which we can take marketing information to create a product design.
+
+
+
+
+
+	Computer System Architecture
+
+
+
+A computer system is basically a machine that simplifies complicated tasks. It should maximize performance and reduce costs as well as power consumption.The different components in the Computer System Architecture are Input Unit, Output Unit, Storage Unit, Arithmetic Logic Unit, Control Unit etc.
+
+A diagram that shows the flow of data between these units is as follows −
+
+Computer System Architecture
+
+The input data travels from input unit to ALU. Similarly, the computed data travels from ALU to output unit. The data constantly moves from storage unit to ALU and back again. This is because stored data is computed on before being stored again. The control unit controls all the other units as well as their data.
+
+Details about all the computer units are −
+
+    Input Unit
+
+    The input unit provides data to the computer system from the outside. So, basically it links the external environment with the computer. It takes data from the input devices, converts it into machine language and then loads it into the computer system. Keyboard, mouse etc. are the most commonly used input devices.
+    Output Unit
+
+    The output unit provides the results of computer process to the users i.e it links the computer with the external environment. Most of the output data is the form of audio or video. The different output devices are monitors, printers, speakers, headphones etc.
+    Storage Unit
+
+    Storage unit contains many computer components that are used to store data. It is traditionally divided into primary storage and secondary storage.Primary storage is also known as the main memory and is the memory directly accessible by the CPU. Secondary or external storage is not directly accessible by the CPU. The data from secondary storage needs to be brought into the primary storage before the CPU can use it. Secondary storage contains a large amount of data permanently.
+    Arithmetic Logic Unit
+
+    All the calculations related to the computer system are performed by the arithmetic logic unit. It can perform operations like addition, subtraction, multiplication, division etc. The control unit transfers data from storage unit to arithmetic logic unit when calculations need to be performed. The arithmetic logic unit and the control unit together form the central processing unit.
+    Control Unit
+
+    This unit controls all the other units of the computer system and so is known as its central nervous system. It transfers data throughout the computer as required including from storage unit to central processing unit and vice versa. The control unit also dictates how the memory, input output devices, arithmetic logic unit etc. shoul
+
+
+	What is Common Bus System in Computer Architecture
+
+
+
+
+A pair of signal lines that facilitate the transfer of multi-bit data from one system to another is known as a bus.
+
+The diagram demonstrates three master devices as M3, M6, and M4.
+
+The master device start and controls the connection. S7, S5, and S2 are slave devices. Slave devices counter to the commands provided by master devices. If M3 needs to offer a command to S5, it should transfer its instruction by the bus.
+
+Therefore, the S5 holds the instruction and takes a response to the instruction by the bus.
+
+A basic computer includes eight registers, a memory unit, and a control unit. These units require to connect frequently. A bus supports the medium through which communication can take place.
+
+There are multiple registers and their functions which are as follows −
+
+    Load (LD) − During the next clock pulse transition the information from the bus is transmitted to the register whose load (LD) input is enabled.
+    Memory Unit − When the write input of the memory is activated, it holds the content of the bus. When the read input is activated, the memory places the 16-bit output onto the bus with the selection variables being S2S1 S0 = 111..
+    Increment (INR) and Clear (CLR) − When the INR signal is enabled, the contents of the specified register are incremented. The contents are cleared when the CLR signal is enabled.
+    Address Registers (AR) − The address of the memory for the next read and write operation is determined. It receives or sends an address from or to the bus when selection inputs S2S1 S0=001 is used and the load is enabled. With inputs INR and CLR, the address gets incremented or cleared.
+    Program Counter (PC) − The address of the next instruction that is to be read from the memory is saved. It receives or sends an address from or to the bus when selection inputs S2S1 S0 = 010is applied and the load input is enabled. With inputs INR and CLR, the address gets incremented or cleared.
+    Data Register (DR) − The data register includes the data to be written into memory or data that is to be read from the memory. It receives or sends an address from or to the bus when selection inputs are S2S1 S0 = 011 applied and the load input is enabled. With inputs INR and CLR, the address gets incremented or cleared.
+    Accumulator (AC) − Accumulators are beneficial in executing the register micro-operations including complement, shift, etc. The results acquired are again sent to the accumulator. An accumulator stores the intermediate arithmetic and logic results.
+    Instruction Registers (IR) − The IR stores the copy of the instruction that the processor has to implement. The instruction that is read from the memory is stored in the IR. It receives or sends instruction code from or to the bus when selection inputs S2S1 S0 = 111 are applied and the load input is enabled.
+    Temporary Register (TR) − The temporary storage for variables or results is supported by the temporary register. It receives or sends the temporary data from or to the bus when selection inputs S2S1 S0 = 011 are applied and the load input is enabled. With inputs INR and CLR, the address gets incremented or cleared.
+    Input Registers (INPR) − It includes 8 bits to hold the alphanumeric input information. Input device shifts its serial data into the 8-bit register. The data is moved to AC via the adder/logic circuit with load enabled.
+    Output Registers (OUTPR) − The data is received from AC and moved to the output devi
+
+
+
+
+
+
+
+
+
+
+
+
+What is Time-shared Common Bus in Computer Architecture?
+
+
+In the time-shared common bus, there are numerous processors linked by a common direction to the memory unit in a common-bus multiprocessor system. The figure shows the organization of time-shared common buses for five processors.
+
+There is only one processor that can interact with the memory of another processor. The processor that is in control of the bus at the time implements transfer operations. Any processor that needs to start a transfer should first check the availability condition of the bus.
+
+During the bus is available, the processor can start a connection with the destination unit to introduce the transfer. A command is issued to advise the destination unit about the task to be implemented. The receiving unit recognizes its address in the bus, and then responds to the control signals from the sender, after which the transfer is initiated.
+
+As all processors share a common bus, the system may display some transfer conflicts. The incorporation of a bus controller that creates priorities among the requesting units helps in resolving the transfer conflicts.
+
+There is a restriction of one transfer at a time for a single common-bus system. This means that other processors are busy with internal operations or remain useless waiting for the bus when one processor is interacting with the memory.
+
+The system processors are kept busy by the execution of multiple separate buses, to allow multiple bus transfers simultaneously. However, this leads to an increase in the system cost and complexity. The figure shows a more economical execution of a dual bus structure for multiprocessors.
+
+In the figure, we see that there are many local buses, and each bus is connected to its local memory, and one or more processors. Each local bus is linked to a peripheral, a CPU, or any mixture of processors. Each local bus is linked to a common system bus using a system bus controller.
+
+The I/O devices linked to both the local I/O peripherals and the local memory is accessible to the local processor. All processors transfer the memory linked to the common system bus.
+
+When an IOP is linked precisely to the system bus, the Input/Output devices connected to it are made accessible to all processors. There is only one processor that can interact with the shared memory, and different common resources by the system bus. All the multiple processors are busy connecting with their local memory and I/O devices.
+
+
+
+
+
+
+
+
+What is single shared bus in computer architecture?
+Computer ArchitectureComputer ScienceNetwork
+
+One of the most famous interconnection networks is the single shared bus. Firstly, its organization is simply a generalization and extension of the buses employed in uniprocessors and some additional ones to solve the contention on the bus when several processors simultaneously want to use the shared bus. These lines are called arbitration lines and play a crucial role in the implementation of shared buses.
+
+Secondly, the shared bus is a very cost-effective interconnection scheme. It can be raising the number of processors does not improve the price of the shared bus. However, the contention on the shared bus represents a strong limitation on the number of application processors.
+
+Obviously, as the number of processors on the bus increases, the probability of contention also increases proportionally, reaching a point when the whole bandwidth of the bus is exhausted by the processors, and hence, adding a new processor will not cause any potential speed-up in the multiprocessor. One of the main design issues in shared bus multiprocessors is the enhancement of the number of applicable processors by different methods.
+
+There are the three most important techniques are as follows −
+
+    It can be introducing private memory.
+    It can be introducing coherent cache memory.
+    It can be introducing multiple buses.
+
+Without these improvements, the applicable number of processors is in the range of 3-5. By introducing private memory and coherent cache memory, the number of processors can be increased by an order of magnitude up to 30 processors. Bus hierarchies open the way to constructing scalable shared memory systems based on bus interconnection.
+
+The typical structure of a single bus multiprocessor without coherent caches is shown in the figure. The new component of the system, relative to a uniprocessor, is the bus arbiter logic which has the role of allocating the bus in the case of several simultaneous bus requests, and the extra bus exchange lines supporting the work of the arbiter.
+
+The bus exchange lines comprise typically one or more bus request lines using which the processors or other temporary bus masters can request bus allocation for their transfer. According to the state of the bus request lines and the applied bus allocation policy, the arbiter grants one of the requesters via the grant lines.
+
+A memory write access need two phases that are as follows −
+
+    The address and data are transferred i.e., bus to the memory controller.
+
+    The memory write operation including parity check, error correction, and so on is executed by the memory controller.
+
+Although the uniprocessor and multiprocessor buses are very similar. There is an important difference in their mode of operation. Uniprocessor and first-generation multiprocessor systems use locked buses. The second-generation multiprocessor used pended buses.
+
+A memory read can access three phases are as follows −
+
+    The address is transferred via bus to the memory controller.
+
+    The memory read operation is executed by the memory controller.
+
+    The data is transferred via bus to requesting processor.

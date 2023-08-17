@@ -1,0 +1,25 @@
+There is a lot of confusion around that what is difference between Architectural pattern and Design pattern since they are closely related. Some of common questions which we encounter are: Are they same or different? And if different how different they are? Also some more questions arises like how they both fit in a project and then what is App Architecture?
+
+Let’s talk about these and understand similarities and differences:
+
+    Architectural patterns are broader in scope than Design patterns. Design patterns provide very specific software related tasks where as Architectural pattern are solutions for business problems. In other words Architectural pattern focuses more on the abstract view of idea while Design pattern focuses on the implementation view of idea.
+    Implementation of Design patterns are defined at granular level where as Architectural patterns are defined at high level. For example different implementations of Factory or Builder pattern might look very similar in different projects. But same Architectural pattern can vary a lot in different projects.
+    One Architectural pattern can be implemented by using many design patterns. There is one to many relationship between architectural pattern and design pattern.
+
+For example an implementation of MVP can be done in following manner: Models can be build by using Factory and Builder pattern. Presenter can be build using Observer and Facade pattern. Views can be build using Factory and Singleton.
+
+4. Architectural pattern is not App Architecture. Architectural pattern provides guidelines and rules to make application more maintainable, loosely coupled and extensible at project/solution level. Design patterns also do at some extend but more at module or component level. Where as App Architecture is complete Architecture of App which will have used Architectural pattern along with other design patterns and interfaces.
+
+Some popular Architectural patterns are:
+
+    MVC
+    MVP
+    MVVM
+    VIPER
+    Three-tier/Multi-tier
+    Dependency Injection Architectural pattern
+
+There are popular 23 design patterns which are also known as Gang of Four (GOF) and divided into three categories: Creational Pattern, Structural Pattern and Behavioural Pattern.
+Conclusion
+
+As a summary we can say that Architectural pattern is higher level of abstraction of software design and Design pattern provides solution to specific module level problems.

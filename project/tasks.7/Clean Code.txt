@@ -1,0 +1,196 @@
+
+
+
+
+		task5.1		______Importance of Variable Naming______
+			
+The importance of using meaningful names in your variables and methods. The name should reveal the intent of the variable/method. This will make it easier for other developers to read and maintain the code, and also for yourself. Doesn’t matter if the name will be long, it’s better to have a longer name than a short enigmatic name or a long descriptive comment.the importance of variable naming in programing cannot be overstated. choosing meaningful and descriptive names for variables is essential for several resons:
+
+
+	1. Clear and meaningful variable names make your code more readable and understandable. When someone, including yourself, reads the code later on, descriptive variable names make it easier to comprehend the purpose and intent of the variable. It reduces confusion and helps in quickly grasping the logic and flow of the program.
+	
+	2.Well-named variables facilitate code maintenance and debugging. If you or someone else needs to modify or fix a piece of code, having meaningful variable names makes it easier to identify which variables are involved and their purpose. This speeds up the debugging process and reduces the chances of introducing errors when making changes
+	3.When working in a team environment, using clear and consistent variable naming conventions becomes even more critical. It promotes effective collaboration by enabling team members to understand each other's code easily. It also reduces communication barriers and makes code reviews and discussions more efficient.
+
+	4.Meaningful variable names act as self-documentation within your code. Instead of relying solely on comments to explain the purpose of a variable, a well-chosen name can convey important details about the data it represents or the role it plays in the program. This makes the code more self-explanatory and reduces the need for excessive comments.
+	5. Good variable naming practices contribute to code reusability. When you name variables based on their purpose rather than their specific values, it becomes easier to reuse the code in different contexts. By avoiding hard-coded or context-specific names, you can create more flexible and adaptable code.
+
+
+ To choose appropriate variable names, consider the following guidelines:
+
+    Use descriptive names that convey the purpose, meaning, or role of the variable.
+    Follow a consistent naming convention throughout your codebase.
+    Choose names that are concise but still descriptive.
+    Use camel case (e.g., myVariableName) or underscore-separated (e.g., my_variable_name) naming conventions based on the programming language or style guide you are following.
+
+Remember, while there may be some personal preferences or language-specific conventions, the goal is to prioritize clarity and maintainability when selecting variable names
+
+
+
+		___Designing Good Functions______
+
+Functions are one of the most important parts of writing code. They make the code reusable and easy to read and maintain. Functions make the code organized.
+
+A good function should have the following properties:
+
+    _____Should be small_______
+    Should do just one thing
+    Should have fewer arguments
+    Should not have side effects
+
+One should be able to look at the function name and understand what that function does. If they want to know more, they should just be able to skim through the function to get detail which is at a lower level. For more lower-level details, they should look at the implementation of the functions called inside it.
+
+A good function allows understanding it without going into lower-level details unless required.Should be small
+How small?
+
+Functions should be very small. It should be hardly 20 lines long.
+
+How to make functions smaller?
+
+Anything inside that function that can be made into a separate function should be extracted. The extracted function should be called from the previous function.
+Single line code blocks
+
+Nested structures like if, else, while, for, try, etc should ideally call another function in their code block. This makes the code easier to read and understand.
+Should do just one thing
+
+A function should do one thing and do it well. In general, all the things in a function should be at the same abstraction level. A function should not have both lower-level and higher-level details.
+
+If another function can be extracted out of a function then it is doing more than one thing. We should extract functions to achieve the same level of abstraction,
+
+Functions that can be divided into multiple sections do more than one thing.
+Should have fewer arguments
+
+    The ideal number of arguments for a function is zero (niladic). Next comes one (monadic), followed closely by two (dyadic). Three arguments (triadic) should be avoided where possible. More than three (polyadic) requires very special justification—and then shouldn’t be used anyway.
+
+    - Robert C. Martin (Uncle Bob)
+
+Arguments make the code harder to understand and test and so we should keep it as low as possible. In most cases, a set of related arguments used across functions deserves to be wrapped in a class of its own.
+
+Output arguments are arguments that are required by the function only to be modified to contain the output. Output arguments make the function harder to understand and should be avoided.
+
+Flag arguments are boolean arguments that make the code do two things based on the flag value. It should be avoided as it breaks the rule of doing only one thing.
+Should not have side effects
+
+A function should not promise one thing and do something else as a side effect.
+
+Example: Changing the parameters/class properties in a get/query method.
+
+A set/update (command) function should not ideally update the parameters. They can however update the properties of the class the function belongs to.
+How to write good functions?
+
+It is okay to start with long functions with multiple arguments which do more than one thing. Start refactoring larger functions into smaller functions till there is a single level of abstraction in the function and no more functions can be extracted. Make sure that the function names are descriptive and have fewer arguments. In the end, all the functions should follow the above rules.
+Designing Good Classes
+
+Classes bind related data and expose functions that operate on that data. This helps make the code more organized.
+
+There are many design principles and patterns that can help make our code better organized. Let's look at some rules which can help us design better classes:
+
+    Organized and Encapsulated
+    Should be small and should do just one thing
+    Small number of instance variables
+
+Organized and Encapsulated
+
+A class should keep all data attributes and utility functions private. Only the functions that are supposed to be exposed should be kept public.
+
+A class should be ordered like this:
+
+    Start with the variables
+        public static constants
+        followed by private static attributes
+        followed by private instance attributes
+    followed by public functions
+    private utility function just after the public function that calls it.
+
+Should be small and should do just one thing
+
+A class should be very small. Different experts have different views on "how small?". Based on most of the views, a class should be small enough that it does just one thing. In general, it should have less than 20 functions.
+
+If a class does more than one thing then it should be broken down into different classes each of which does a single thing.
+Small number of instance variables
+
+A class should have strong cohesion, i.e., the functions of a class should be strongly related in supporting a single central purpose.
+
+A maximal cohesive class is one in which all functions work with all the instance variables. Achieving that is pretty difficult. We should try to make our classes as cohesive as possible. This can be done by having a smaller number of instance variables such that each function in the class work with as many of the instance variables as possible. This can be done by splitting the class into multiple classes based on the responsibility of each class.
+
+
+	We can write clean code by following a set of guidelines known as Software Design Principles. Software Design Principles is a set of guidelines proven to work over the years.
+
+I've listed down some of the most popular and useful design principles. You should try to enforce them in your code with every iteration.
+
+This is the first part of the Software Design Principles Series.
+Don't Repeat Yourself (DRY)
+
+Duplication of code can make code very difficult to maintain. Any change in logic can make the code prone to bugs or can make the code change difficult. This can be fixed by doing code reuse (DRY Principle).
+
+The DRY principle is stated as "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system".
+
+The way to achieve DRY is by creating functions and classes to make sure that any logic should be written in only one place.
+Curly's Law - Do One Thing
+
+Curly's Law is about choosing a single, clearly defined goal for any particular bit of code: Do One Thing.
+
+Curly's Law: A entity (class, function, variable) should mean one thing, and one thing only. It should not mean one thing in one circumstance and carry a different value from a different domain some other time. It should not mean two things at once. It should mean One Thing and should mean it all of the time.
+Keep It Simple Stupid (KISS)
+
+The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, simplicity should be a key goal in design, and unnecessary complexity should be avoided.
+
+Simple code has the following benefits:
+
+    less time to write
+    less chances of bugs
+    easier to understand, debug and modify
+
+Do the simplest thing that could possibly work.
+Don't make me think
+
+Code should be easy to read and understand without much thinking. If it isn't then there is a prospect of simplification.
+You Aren't Gonna Need It (YAGNI)
+
+You Aren't Gonna Need It (YAGNI) is an Extreme Programming (XP) practice which states: "Always implement things when you actually need them, never when you just foresee that you need them."
+
+Even if you're totally, totally, totally sure that you'll need a feature, later on, don't implement it now. Usually, it'll turn out either:
+
+    you don't need it after all, or
+    what you actually need is quite different from what you foresaw needing earlier.
+
+This doesn't mean you should avoid building flexibility into your code. It means you shouldn't overengineer something based on what you think you might need later on.
+
+There are two main reasons to practice YAGNI:
+
+    You save time because you avoid writing code that you turn out not to need.
+    Your code is better because you avoid polluting it with 'guesses' that turn out to be more or less wrong but stick around anyway.
+
+Premature Optimization is the Root of All Evil
+
+Programmers waste enormous amounts of time thinking about or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered.
+
+    We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%.
+
+    - Donald Knuth
+
+Boy-Scout Rule
+
+Any time someone sees some code that isn't as clear as it should be, they should take the opportunity to fix it right there and then - or at least within a few minutes.
+
+This opportunistic refactoring is referred to by Uncle Bob as following the boy-scout rule - always leave the code behind in a better state than you found it.
+
+The code quality tends to degrade with each change. This results in technical debt. The Boy-Scout Principle saves us from that.
+Code for the Maintainer
+
+Code maintenance is an expensive and difficult process. Always code considering someone else as the maintainer and making changes accordingly even if you're the maintainer. After a while, you'll remember the code as much as a stranger.
+
+Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.
+Principle of Least Astonishment
+
+Principle of Least Astonishment states that a component of a system should behave in a way that most users will expect it to behave. The behavior should not astonish or surprise users.
+
+Code should do what the name and comments suggest. Conventions should be followed. Surprising side effects should be avoided as much as possible.
+
+
+
+
+
+
+
+

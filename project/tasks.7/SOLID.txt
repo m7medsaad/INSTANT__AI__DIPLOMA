@@ -1,0 +1,484 @@
+The SOLID principles of object-oriented programming help make object-oriented designs more understandable, flexible, and maintainable.
+
+They also make it easy to create readable and testable code that many developers can collaboratively work with anywhere and anytime. And they make you aware of the best way to write code 💪.
+
+SOLID is a mnemonic acronym that stands for the five design principles of Object-Oriented class design. These principles are:
+
+    S - Single-responsibility Principle
+    O - Open-closed Principle
+    L - Liskov Substitution Principle
+    I - Interface Segregation Principle
+    D - Dependency Inversion Principle
+
+In this article, you will learn what these principles stand for and how they work using JavaScript examples. The examples should be fine even if you are not fully conversant with JavaScript, because they apply to other programming languages as well.
+What is the Single-Responsibility Principle (SRP)?
+
+The Single-responsibility Principle, or SRP, states that a class should only have one reason to change. This means that a class should have only one job and do one thing.
+
+Let’s take a look at a proper example. You’ll always be tempted to put similar classes together – but unfortunately, this goes against the Single-responsibility principle. Why?
+
+The ValidatePerson object below has three methods: two validation methods, (ValidateName() and ValidateAge()), and a Display() method.
+
+class ValidatePerson {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    ValidateName(name) {
+        if (name.length > 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    ValidateAge(age) {
+        if (age > 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    Display() {
+        if (this.ValidateName(this.name) && this.ValidateAge(this.age)) {
+            console.log(`Name: ${this.name} and Age: ${this.age}`);
+        } else {
+            console.log('Invalid');
+        }
+    }
+}
+
+The Display() method goes against the SRP because the goal is that a class should have only one job and do one thing. The ValidatePerson class does two jobs – it validates the person’s name and age and then displays some information.
+
+The way to avoid this problem is to separate code that supports different actions and jobs so that each class only performs one job and has one reason to change.
+
+This means that the ValidatePerson class will only be responsible for validating a user, as seen below:
+
+class ValidatePerson {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    ValidateName(name) {
+        if (name.length > 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    ValidateAge(age) {
+        if (age > 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+While the new class DisplayPerson will now be responsible for displaying a person, as you can see in the code block below:
+
+class DisplayPerson {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        this.validate = new ValidatePerson(this.name, this.age);
+    }
+
+    Display() {
+        if (
+            this.validate.ValidateName(this.name) &&
+            this.validate.ValidateAge(this.age)
+        ) {
+            console.log(`Name: ${this.name} and Age: ${this.age}`);
+        } else {
+            console.log('Invalid');
+        }
+    }
+}
+
+With this, you will have fulfilled the single-responsibility principle, meaning our classes now have just one reason to change. If you want to change the DisplayPerson class, it won’t affect the ValidatePerson class.
+What is the Open-Closed Principle?
+
+The open-closed principle can be confusing because it's a two-direction principle. According to Bertrand Meyer's definition on Wikipedia, the open-closed principle (OCP) states that software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
+
+This definition can be confusing, but an example and further clarification will help you understand.
+
+There are two primary attributes in the OCP:
+
+    It is open for extension — This means you can extend what the module can do.
+    It is closed for modification — This means you cannot change the source code, even though you can extend the behavior of a module or entity.
+
+OCP means that a class, module, function, and other entities can extend their behavior without modifying their source code. In other words, an entity should be extendable without modifying the entity itself. How?
+
+For example, suppose you have an array of iceCreamFlavours, which contains a list of possible flavors. In the makeIceCream class, a make() method will check if a particular flavor exists and logs a message.
+
+const iceCreamFlavors = ['chocolate', 'vanilla'];
+
+class makeIceCream {
+    constructor(flavor) {
+        this.flavor = flavor;
+    }
+
+    make() {
+        if (iceCreamFlavors.indexOf(this.flavor) > -1) {
+            console.log('Great success. You now have ice cream.');
+        } else {
+            console.log('Epic fail. No ice cream for you.');
+        }
+    }
+}
+
+The code above fails the OCP principle. Why? Well, because the code above is not open to an extension, meaning for you to add new flavors, you would need to directly edit the iceCreamFlavors array. This means that the code is no longer closed to modification. Haha (that's a lot).
+
+To fix this, you would need an extra class or entity to handle addition, so you no longer need to modify the code directly to make any extension.
+
+const iceCreamFlavors = ['chocolate', 'vanilla'];
+
+class makeIceCream {
+    constructor(flavor) {
+        this.flavor = flavor;
+    }
+    make() {
+        if (iceCreamFlavors.indexOf(this.flavor) > -1) {
+            console.log('Great success. You now have ice cream.');
+        } else {
+            console.log('Epic fail. No ice cream for you.');
+        }
+    }
+}
+
+class addIceCream {
+    constructor(flavor) {
+        this.flavor = flavor;
+    }
+    add() {
+        iceCreamFlavors.push(this.flavor);
+    }
+}
+
+Here, we've added a new class — addIceCream – to handle addition to the iceCreamFlavors array using the add() method. This means your code is closed to modification but open to an extension because you can add new flavors without directly affecting the array.
+
+let addStrawberryFlavor = new addIceCream('strawberry');
+addStrawberryFlavor.add();
+makeStrawberryIceCream.make();
+
+Also, notice that SRP is in place because you created a new class. 😊
+What is the Liskov Substitution Principle?
+
+In 1987, the Liskov Substitution Principle (LSP) was introduced by Barbara Liskov in her conference keynote “Data abstraction”. A few years later, she defined the principle like this:
+
+    “Let Φ(x) be a property provable about objects x of type T. Then Φ(y) should be true for objects y of type S where S is a subtype of T”.
+
+To be honest, that definition is not what many software developers want to see 😂 — so let me break it down into an OOP-related definition.
+
+The principle defines that in an inheritance, objects of a superclass (or parent class) should be substitutable with objects of its subclasses (or child class) without breaking the application or causing any error.
+
+In very plain terms, you want the objects of your subclasses to behave the same way as the objects of your superclass.
+
+A very common example is the rectangle, square scenario. It’s clear that all squares are rectangles because they are quadrilaterals with all four angles being right angles. But not every rectangle is a square. To be a square, its sides must have the same length.
+
+Bearing this in mind, suppose you have a rectangle class to calculate the area of a rectangle and perform other operations like set color:
+
+class Rectangle {
+    setWidth(width) {
+        this.width = width;
+    }
+
+    setHeight(height) {
+        this.height = height;
+    }
+
+    setColor(color) {
+        // ...
+    }
+
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+Knowing fully well that all squares are rectangles, you can inherit the properties of the rectangle. Since the width and height has to be the same, then you can adjust it:
+
+class Square extends Rectangle {
+    setWidth(width) {
+        this.width = width;
+        this.height = width;
+    }
+    setHeight(height) {
+        this.width = height;
+        this.height = height;
+    }
+}
+
+Taking a look at the example, it should work properly:
+
+let rectangle = new Rectangle();
+rectangle.setWidth(10);
+rectangle.setHeight(5);
+console.log(rectangle.getArea()); // 50
+
+In the above, you will notice that a rectangle is created, and the width and height are set. Then you can calculate the correct area.
+
+But according to the LSP, you want the objects of your subclasses to behave the same way as the objects of your superclass. Meaning if you replace the Rectangle with Square, everything should still work well:
+
+let square = new Square();
+square.setWidth(10);
+square.setHeight(5);
+
+You should get 100, because the setWidth(10) is supposed to set both the width and height to 10. But because of the setHeight(5), this will return 25.
+
+let square = new Square();
+square.setWidth(10);
+square.setHeight(5);
+console.log(square.getArea()); // 25
+
+This breaks the LSP. To fix this, there should be a general class for all shapes that will hold all generic methods that you want the objects of your subclasses to have access to. Then for individual methods, you create an individual class for rectangle and square.
+
+class Shape {
+    setColor(color) {
+        this.color = color;
+    }
+    getColor() {
+        return this.color;
+    }
+}
+
+class Rectangle extends Shape {
+    setWidth(width) {
+        this.width = width;
+    }
+    setHeight(height) {
+        this.height = height;
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+class Square extends Shape {
+    setSide(side) {
+        this.side = side;
+    }
+    getArea() {
+        return this.side * this.side;
+    }
+}
+
+This way, you can set the color and get the color using either the super or subclasses:
+
+// superclass
+let shape = new Shape();
+shape.setColor('red');
+console.log(shape.getColor()); // red
+
+// subclass
+let rectangle = new Rectangle();
+rectangle.setColor('red');
+console.log(rectangle.getColor()); // red
+
+// subclass
+let square = new Square();
+square.setColor('red');
+console.log(square.getColor()); // red
+
+What is the Interface Segregation Principle?
+
+The Interface Segregation Principle (ISP) states that “a client should never be forced to implement an interface that it doesn’t use, or clients shouldn’t be forced to depend on methods they do not use”. What does this mean?
+
+Just as the term segregation means — this is all about keeping things separated, meaning separating the interfaces.
+
+Note: By default, JavaScript does not have interfaces, but this principle still applies. So let’s explore this as if the interface exists, so you will know how it works for other programming languages like Java.
+
+A typical interface will contain methods and properties. When you implement this interface into any class, then the class needs to define all its methods. For example, suppose you have an interface that defines methods to draw specific shapes.
+
+interface ShapeInterface {
+    calculateArea();
+    calculateVolume();
+}
+
+When any class implements this interface, all the methods must be defined even if you won't use them or if they don’t apply to that class.
+
+class Square implements ShapeInterface {
+    calculateArea(){
+        //...
+    }
+    calculateVolume(){
+        //...
+    }  
+}
+
+class Cuboid implements ShapeInterface {
+    calculateArea(){
+        //...
+    }
+    calculateVolume(){
+        //...
+    }    
+}
+
+class Rectangle implements ShapeInterface {
+    calculateArea(){
+        //...
+    }
+    calculateVolume(){
+        //...
+    }   
+}
+
+Looking at the example above, you will notice that you cannot calculate the volume of a square or rectangle. Because the class implements the interface, you need to define all methods, even the ones you won’t use or need.
+
+To fix this, you would need to segregate the interface.
+
+interface ShapeInterface {
+    calculateArea();
+}
+
+interface ThreeDimensionalShapeInterface {
+    calculateArea();
+    calculateVolume();
+}
+
+You can now implement the specific interface that works with each class.
+
+class Square implements ShapeInterface {
+    calculateArea(){
+        //...
+    } 
+}
+
+class Cuboid implements ThreeDimensionalShapeInterface {
+    calculateArea(){
+        //...
+    }
+    calculateVolume(){
+        //...
+    }    
+}
+
+class Rectangle implements ShapeInterface {
+    calculateArea(){
+        //...
+    }  
+}
+
+What is the Dependency Inversion Principle?
+
+This principle is targeted towards loosely coupling software modules so that high-level modules (which provide complex logic) are easily reusable and unaffected by changes in low-level modules (which provide utility features).
+
+According to Wikipedia, this principle states that:
+
+    High-level modules should not import anything from low-level modules. Both should depend on abstractions (for example, interfaces).
+    Abstractions should be independent of details. Details (concrete implementations) should depend on abstractions.
+
+In plain terms, this principle states that your classes should depend upon interfaces or abstract classes instead of concrete classes and functions. This makes your classes open to extension, following the open-closed principle.
+
+Let's look at an example. When building a store, you would want your store to make use of a payment gateway like stripe or any other preferred payment method. You might write your code tightly coupled to that API without thinking of the future.
+
+But then what if you discover another payment gateway that offers far better service, let’s say PayPal? Then it becomes a struggle to switch from Stripe to Paypal, which should not be an issue in programming and software design.
+
+class Store {
+    constructor(user) {
+        this.stripe = new Stripe(user);
+    }
+
+    purchaseBook(quantity, price) {
+        this.stripe.makePayment(price * quantity);
+    }
+
+    purchaseCourse(quantity, price) {
+        this.stripe.makePayment(price * quantity);
+    }
+}
+
+class Stripe {
+    constructor(user) {
+        this.user = user;
+    }
+
+    makePayment(amountInDollars) {
+        console.log(`${this.user} made payment of ${amountInDollars}`);
+    }
+}
+
+Considering the example above, you'll notice that if you change the payment gateway, you won't just need to add the class – you'll also need to make changes to the Store class. This does not just go against the Dependency Inversion Principle but also against the open-closed principle.
+
+To fix this, you must ensure that your classes depend upon interfaces or abstract classes instead of concrete classes and functions. For this example, this interface will contain all the behavior you want your API to have and doesn't depend on anything. It serves as an intermediary between the high-level and low-level modules.
+
+class Store {
+    constructor(paymentProcessor) {
+        this.paymentProcessor = paymentProcessor;
+    }
+
+    purchaseBook(quantity, price) {
+        this.paymentProcessor.pay(quantity * price);
+    }
+
+    purchaseCourse(quantity, price) {
+        this.paymentProcessor.pay(quantity * price);
+    }
+}
+
+class StripePaymentProcessor {
+    constructor(user) {
+        this.stripe = new Stripe(user);
+    }
+
+    pay(amountInDollars) {
+        this.stripe.makePayment(amountInDollars);
+    }
+}
+
+class Stripe {
+    constructor(user) {
+        this.user = user;
+    }
+
+    makePayment(amountInDollars) {
+        console.log(`${this.user} made payment of ${amountInDollars}`);
+    }
+}
+
+let store = new Store(new StripePaymentProcessor('John Doe'));
+store.purchaseBook(2, 10);
+store.purchaseCourse(1, 15);
+
+In the code above, you will notice that the StripePaymentProcessor class is an interface between the Store class and the Stripe class. In a situation where you need to make use of PayPal, all you have to do is create a PayPalPaymentProcessor which would work with the PayPal class, and everything will work without affecting the Store class.
+
+class Store {
+    constructor(paymentProcessor) {
+        this.paymentProcessor = paymentProcessor;
+    }
+
+    purchaseBook(quantity, price) {
+        this.paymentProcessor.pay(quantity * price);
+    }
+
+    purchaseCourse(quantity, price) {
+        this.paymentProcessor.pay(quantity * price);
+    }
+}
+
+class PayPalPaymentProcessor {
+    constructor(user) {
+        this.user = user;
+        this.paypal = new PayPal();
+    }
+
+    pay(amountInDollars) {
+        this.paypal.makePayment(this.user, amountInDollars);
+    }
+}
+
+class PayPal {
+    makePayment(user, amountInDollars) {
+        console.log(`${user} made payment of ${amountInDollars}`);
+    }
+}
+
+let store = new Store(new PayPalPaymentProcessor('John Doe'));
+store.purchaseBook(2, 10);
+store.purchaseCourse(1, 15);
