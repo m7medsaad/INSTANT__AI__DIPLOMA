@@ -1,0 +1,222 @@
+Hashmaps are data structures that are used to store data in a key-value format. They are commonly used because they provide fast lookup times, which can be important in applications where you need to quickly retrieve data. Additionally, they can be used to implement other data structures, such as sets and caches.
+
+Hashmaps are very useful to software engineers. They allow for reading and working with large datasets when looking for keys or values and make it faster to search for specific values in 0(1).
+
+Here’s a Python hashmap example to better understand its use:
+
+Let’s say you need to quickly find an element in a large dataset, such as a school database. You have to efficiently keep track of the scores of various students. Each student has a matriculation number, which is the key, and a Grade Point Average (GPA), which is the value. Using a student’s ID, you can check their GPA. You can calculate their performance, compare grades, and see their progress.
+What are hash functions in a hashmap?
+
+A hash function is a function that takes "key" as input and returns a "hash value" or "hash" as a fixed-size output. The main importance of a hash function is that you can give the same input and the function will always produce the same output. This is important because it allows the hashmap to quickly determine where a particular key-value pair should be stored in the map.
+
+The major reason hash functions are mostly in hashmaps is because they allow the latter to efficiently determine the location of a particular key-value pair in the map. This is done by first applying the hash function to the key to return a hash value, and then using the hash value to calculate the index at which the key-value pair should be stored in the map.
+How the hash function works
+
+The function takes a string as input and returns an integer hash value for that string. It does this by looping through each character in the key, multiplying the hash value by a prime number, and adding the ASCII value of the character to the hash value.
+
+def my_hash_func(key: str) -> int:
+   hash_value = 17
+   for ch in key:
+hash_value = hash_value * 31 + ord(ch)
+   return hash_value
+
+This is a very basic hash function and is not intended for use in production. It's just an example to illustrate how a hash function might work in Python. For a more efficient hash function, you should use one of the built-in options provided by Python, such as the hash() function.
+Using the hash() function to compute a key’s hash value
+
+my_key = "hashmap"
+my_hash_value = hash(my_key)
+print(my_hash_value)
+# Output: -7206927305943102685
+
+When using a hash function in a hashmap, it is important to choose one that is both fast to compute and produces hash values that are distributed evenly across the possible range of values. This ensures that the hashmap can efficiently store and look up key-value pairs.
+
+When you look at the value related to a particular key - student’s matriculation number, in this case - the hashmap uses the hash function to quickly determine where the matriculation number is stored in the map.
+
+Here is an example of how a hashmap works in Python:
+
+students = {}
+math = students["001"] = "John"
+science = students["002"] = "Mike"
+art = students["003"] = "Joy"
+social_science = students["004"] = "Hanna"
+print(science)
+Output: "Mike"
+
+Here, we initialized an empty hashmap and then added four key-value pairs to it. We then print the value associated with one of the keys and print it to the terminal.
+
+Another example is if we have a list of students with their matriculation numbers in different subjects, and we want to keep track of how many subjects each student passed in the list. We could use a hashmap to do this efficiently by using the matriculation number as the keys in the map and the scores as the values.
+
+Here is an example of how this could work:
+
+student_list = {}
+students_id = ["001", "002", "003", "001", "002"]
+for student in students_id:
+   if student in student_list:
+       student_list[student] += 1
+   else:
+       student_list[student] = 1
+for student_id, score in student_list.items():
+   print("id", student_id + ": " + str(score))
+
+Output: id 001: 2
+
+Output: id 002: 2
+
+Output: id 003: 1
+
+In the above example, we create a student id list and then loop through the list of ids, keeping track of the number of times each student’s id appears in the list. We use hashmap to efficiently check the number of times each id appears, and then print the number of times to the terminal.
+Creating nested dictionaries in Python
+
+To create a nested dictionary in Python, you can use the dict() constructor to create a dictionary, and then add dictionaries as keys and values. Here's an example:
+
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+nested_dict = {"002": "Mike"}
+students["nested_dict"] = nested_dict
+print(students)
+# {'001': 'John', '002': 'Mike', '003': 'Joy', '004': 'Hanna', '005': 'Grace', 'nested_dict': {'002': 'Mike'}}
+
+As you can see, this creates a dictionary with a key "nested_dict" whose value is another dictionary containing a single key-value pair. You can nest dictionaries as deeply as you need to in this way.
+
+Here’s how you can access the values in a nested dictionary.
+
+nested_dict = students["nested_dict"]
+print(nested_dict) 
+# {'002': 'Mike'}
+
+You can also use the get() method to safely access values in nested dictionaries without having to worry about KeyErrors.
+
+print(students.get("nested_dict").get("002")) 
+# Mike
+
+How to add data to a hashmap
+
+You can use the update() method to add data to a hashmap in Python. It takes a dictionary as an argument and adds all the key-value pairs from it to the hashmap. For example:
+
+student_list = {}
+students = {
+   "Grace": "001",
+   "Hanna": "002",
+   "John": "003",
+   "Mike": "004",
+   "James": "005"}
+student_list.update(students)
+print(student_list)
+# {'Grace': '001', 'Hanna': '002', 'John': '003', 'Mike': '004', 'James': '005'}
+
+Alternatively, you can add a single key-value pair to the hashmap using the syntax hashmap[key] = value.
+
+student_data = {}
+student_data["Grace"] = "001"
+student_data["Hanna"] = "002"
+student_data["John"] = "003"
+student_data["Mike"] = "004"
+student_data["James"] = "005"
+print(student_data)
+# {'Grace': '001', 'Hanna': '002', 'John': '003', 'Mike': '004', 'James': '005'}
+
+Using defaultdict in Python
+
+The defaultdict is a subclass of the built-in dict class. It overrides one method to provide a default value for a nonexistent key, specified at the time of creation. Here's how to use it:
+
+from collections import defaultdict
+# Create a defaultdict with a default value of 0
+# This means that if a nonexistent key is accessed, 0 will be returned
+counts = defaultdict(int)
+# Now we can use it like a regular dictionary
+counts['apple'] += 1
+counts['banana'] += 1
+counts['apple'] += 1
+# But if we try to access a nonexistent key, it will return 0
+print(counts['pear'])  # Output: 0
+# We can also specify a different default value
+# Here, the default value is an empty list
+fruits = defaultdict(list)
+# Now, if we try to append to a nonexistent key, it will
+# first create the key and set its value to an empty list
+# Then it will append the value to that list
+fruits['apple'].append('red')
+fruits['apple'].append('green')
+fruits['banana'].append('yellow')
+print(fruits)  # Output: defaultdict(list, {'apple': ['red', 'green'], 'banana': ['yellow']})
+
+Note that the default value must be specified as a callable object (e.g., a function or lambda expression) because the defaultdict calls this object to get the default value for missing keys. For example, if you want to use a default value of None, you would create the defaultdict like this:
+
+# Create a defaultdict with a default value of None
+hashmap = defaultdict(lambda: None)
+
+Once you have a defaultdict object, you can use it like a regular dictionary. You can add, modify, and access key-value pairs using the usual dictionary syntax. The defaultdict will automatically return the default value for any keys that don't exist in the dictionary.
+Retrieving data using hashmap functions
+
+In Python, you can use the get() method of a dict (short for dictionary) object, which is the equivalent of a hashmap in Python, to retrieve the value associated with a particular key. For example:
+
+# Define a dictionary
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+# Use the get() method to retrieve a value
+value = students.get('001')
+# Print the value
+print(value)  # Output: value1
+
+Note that if you try to retrieve a value using a key that does not exist in the dictionary, you will get a KeyError exception. To avoid this, you can use the get() method and specify a default value to return if the key does not exist.
+
+# Define a dictionary
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+# Use the get() method with a default value
+value = students.get('006', 'default_value')
+# Print the value
+print(value)  # Output: default_value
+
+Another method to retrieve data from a dict object in Python is to use the square bracket notation as shown in the previous example.
+
+In addition to these methods, you can also use the items() method of a dict object to get a list of key-value pairs from the dictionary and then iterate over the list to retrieve the values associated with each key. For example:
+
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+# Get a list of key-value pairs from the dictionary
+lst = students.items()
+# Iterate over the list of key-value pairs
+for key, value in lst:
+   # Print the key and value
+   print(key, value)
+Output:
+# 001 John
+# 002 Mike
+# 003 Joy
+# 004 Hanna
+# 005 Grace
+
+Deleting elements in a hashmap
+
+In Python, you can use the del keyword to delete an element of a key-value pair from a dict object, which is the equivalent of a HashMap in Python. Here is an example:
+
+# Remove a key-value pair from the dictionary
+del students['003']# Print the updated dictionary
+print(students)  # Output: {'001': 'John', '002': 'Mike', '004': 'Hanna', '005': 'Grace'}
+
+You can also use the pop() method of a dictionary object, which is also the equivalent of a HashMap in Python, to remove a key-value pair from the dictionary. The pop() method takes the key of the item to be removed as its argument and returns the value associated with that key. For example:
+
+Define a dictionary
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+# Remove a key-value pair from the dictionary
+value = students.pop('001')
+# Print the removed value
+print(value)  # Output: John
+# Print the updated dictionary
+print(students)  # Output: {'002': 'Mike', '003': 'Joy', '004': 'Hanna', '005': 'Grace'}
+
+Note that if you try to remove a key-value pair using a key that does not exist in the dictionary, you will get a KeyError exception. To avoid this, you can use the pop() method with a default value.
+
+students = {"001": "John", "002": "Mike", "003": "Joy", "004": "Hanna", "005": "Grace"}
+
+
+# Use the pop() method with a default value
+value = students.pop('009', 'default_value')
+
+
+# Print the value
+print(value)  # Output: default_value
+
+Hashmap vs. array
+
+In general, a hashmap is a more efficient data structure than an array because it allows for faster insertion and retrieval of data. It uses hashing to store data which allows it to access and insert data in constant time on average. In contrast, an array must be searched sequentially in order to find a specific element, which can be time-consuming if the array is large.
+Conclusion
+
+We’ve learned about hashmaps in Python, the functions, and their importance. We also learned how to use them and explored how the hash function works. Try the various methods discussed above and see the difference they make to the speed at which you can access data.

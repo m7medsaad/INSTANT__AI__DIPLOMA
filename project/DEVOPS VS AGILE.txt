@@ -1,0 +1,54 @@
+DevOps vs Agile
+
+DevOps and Agile are the two software development methodologies with similar aims, getting the end-product as quickly and efficiently as possible. While many organizations are hoping to employ these practices, there is often some confusion between both methodologies.
+DevOps vs Agile
+
+What does each methodology enclose? Where do they overlap? Can they work together, or should we choose one over the other?
+
+Before move further, take a glance at DevOps and Agile.
+What is DevOps?
+
+The DevOps is a combination of two words, one is software Development, and second is Operations. This allows a single team to handle the entire application lifecycle, from development to testing, deployment, and operations. DevOps helps you to reduce the disconnection between software developers, quality assurance (QA) engineers, and system administrators.
+
+DevOps promotes collaboration between Development and Operations team to deploy code to production faster in an automated & repeatable way.
+
+DevOps helps to increase organization speed to deliver applications and services. It also allows organizations to serve their customers better and compete more strongly in the market.
+
+DevOps can also be defined as a sequence of development and IT operations with better communication and collaboration.
+
+DevOps has become one of the most valuable business disciplines for enterprises or organizations. With the help of DevOps, quality, and speed of the application delivery has improved to a great extent.
+
+DevOps is nothing but a practice or methodology of making "Developers" and "Operations" folks work together. DevOps represents a change in the IT culture with a complete focus on rapid IT service delivery through the adoption of agile practices in the context of a system-oriented approach.
+What is Agile?
+
+The Agile involves continuous iteration of development and testing in the SDLC process. Both development and testing activities are concurrent, unlike the waterfall model. This software development method emphasizes on incremental, iterative, and evolutionary development.
+
+It breaks the product into small pieces and integrates them for final testing. It can be implemented in many ways, such as Kanban, XP, Scrum, etc.
+
+The Agile software development focus on the four core values, such as:
+
+    Working software over comprehensive documentation.
+    Responded to change over following a plan.
+    Customer collaboration over contract negotiation.
+    Individual and team interaction over the process and tools.
+
+Below are some essential differences between the DevOps and Agile:
+freestar
+Parameter 	DevOps 	Agile
+Definition 	DevOps is a practice of bringing development and operation teams together. 	Agile refers to the continuous iterative approach, which focuses on collaboration, customer feedback, small, and rapid releases.
+Purpose 	DevOps purpose is to manage end to end engineering processes. 	The agile purpose is to manage complex projects.
+Task 	It focuses on constant testing and delivery. 	It focuses on constant changes.
+Team size 	It has a large team size as it involves all the stack holders. 	It has a small team size. As smaller is the team, the fewer people work on it so that they can move faster.
+Team skillset 	The DevOps divides and spreads the skill set between development and the operation team. 	The Agile development emphasizes training all team members to have a wide variety of similar and equal skills.
+Implementation 	DevOps is focused on collaboration, so it does not have any commonly accepted framework. 	Agile can implement within a range of tactical frameworks such as safe, scrum, and sprint.
+Duration 	The ideal goal is to deliver the code to production daily or every few hours. 	Agile development is managed in units of sprints. So this time is much less than a month for each sprint.
+Target areas 	End to End business solution and fast delivery. 	Software development.
+Feedback 	Feedback comes from the internal team. 	In Agile, feedback is coming from the customer.
+Shift left principle 	It supports both variations left and right. 	It supports only shift left.
+Focus 	DevOps focuses on operational and business readiness. 	Agile focuses on functional and non-functional readiness.
+Importance 	In DevOps, developing, testing, and implementation all are equally important. 	Developing software is inherent to Agile.
+Quality 	DevOps contributes to creating better quality with automation and early bug removal. Developers need to follow Coding and best Architectural practices to maintain quality standards. 	The Agile produces better applications suites with the desired requirements. It can quickly adapt according to the changes made on time during the project life.
+Tools 	Puppet, Chef, AWS, Ansible, and team City OpenStack are popular DevOps tools. 	Bugzilla, Kanboard, JIRA are some popular Agile tools.
+Automation 	Automation is the primary goal of DevOps. It works on the principle of maximizing efficiency when deploying software. 	Agile does not emphasize on the automation.
+Communication 	DevOps communication involves specs and design documents. It is essential for the operational team to fully understand the software release and its network implications for the enough running the deployment process. 	Scrum is the most common method of implementing Agile software development. Scrum meeting is carried out daily.
+Documentation 	In the DevOps, the process documentation is foremost because it will send the software to an operational team for deployment. Automation minimizes the impact of insufficient documentation. However, in the development of sophisticated software, it's difficult to transfer all the knowledge required. 	The agile method gives priority to the working system over complete documentation. It is ideal when you are flexible and responsive. However, it can harm when you are trying to turn things over to another team for deployment.

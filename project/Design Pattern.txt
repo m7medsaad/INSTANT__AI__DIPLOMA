@@ -1,0 +1,434 @@
+How Design Patterns Solve Design Problems
+
+    Finding Appropriate Objects. ...
+    Determining Object Granularity. ...
+    Specifying Object Interfaces. ...
+    Specifying Object Implementations. ...
+    Putting Reuse Mechanisms to Work. ...
+    Relating Run-Time and Compile-Time Structures. ...
+    Designing for Change.
+
+Proxy Pattern’s Motivation
+
+Sometimes we need the ability to control the access to an object. For example if we need to use only a few methods of some costly objects we’ll initialize those objects when we need them entirely. Until that point we can use some light objects exposing the same interface as the heavy objects.
+
+ 
+
+These light objects are called proxies and they will instantiate those heavy objects when they are really need and by then we’ll use some light objects instead.
+
+ 
+
+This ability to control the access to an object can be required for a variety of reasons: controlling when a costly object needs to be instantiated and initialized, giving different access rights to an object, as well as providing a sophisticated means of accessing and referencing objects running in other processes, on other machines.
+
+ 
+
+Consider for example an image viewer program. An image viewer program must be able to list and display high resolution photo objects that are in a folder, but how often do someone open a folder and view all the images inside.
+
+ 
+
+Sometimes you will be looking for a particular photo, sometimes you will only want to see an image name. The image viewer must be able to list all photo objects, but the photo objects must not be loaded into memory until they are required to be rendered.
+
+ 
+Proxy Pattern’s Applicability
+
+Proxy pattern is applicable when:
+
+    A remote proxy provides a local representative for an object in a different address space.
+
+ 
+
+    A virtual proxy creates expensive objects on demand.
+
+ 
+
+    A protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
+
+ 
+
+    A smart reference is a replacement for a bare pointer that performs additional actions when an object is accessed.
+
+ 
+Proxy Pattern’s Structure
+
+The structure of proxy pattern is as shown below:
+
+Proxy Pattern Structure
+
+ 
+Participants
+
+The participants in proxy pattern are:
+
+    Proxy: Maintains a reference that lets the proxy access the real subject. Provides an interface identical to Subject so that the Proxy can be substituted for the real subject. Controls access to the real subject.
+    Subject: Defines the common interface for RealSubject and Proxy so that a Proxy can be used anywhere a RealSubject is expected.
+    RealSubject: Defines the real object that the proxy represents.
+
+ 
+Collaborations
+
+Proxy forwards requests to RealSubject when appropriate, depending on the kind of proxy.
+
+ 
+Proxy Pattern’s Consequences
+
+The Proxy pattern introduces a level of indirection when accessing an object. The additional indirection has many uses, depending on the kind of proxy:
+
+    A remote proxy can hide the fact that an object resides in a different address space.
+    A virtual proxy can perform optimizations such as creating an object on demand.
+    Both protection proxies and smart references allow additional housekeeping tasks when an object is accessed.
+
+ 
+Proxy Pattern’s Implementation
+
+The Proxy pattern can exploit the following language features:
+
+    Overloading the member access operator in C++: C++ supports overloading operator->, the member access operator. Overloading this operator lets you perform additional work whenever an object is dereferenced.
+
+ 
+
+    Using doesNotUnderstand in Smalltalk: Smalltalk provides a hook that you can use to support automatic forwarding of requests. Smalltalk calls doesNotUnderstand: aMessage when a client sends a message to a receiver that has no corresponding method. The Proxy class can redefine doesNotUnderstand so that the message is forwarded to its subject.
+
+ 
+
+    Proxy doesn’t always have to know the type of real subject: If a Proxy class can deal with its subject solely through an abstract interface, then there’s no need to make a Proxy class for each RealSubject class; the proxy can deal with all RealSubject classes uniformly. But if Proxies are going to instantiate RealSubjects (such as in a virtual proxy), then they have to know the concrete class.
+
+
+
+
+
+
+
+Some programs require a large number of objects that have some shared state among them. Consider for example a game of war, were there is a large number of soldier objects; a soldier object maintain the graphical representation of a soldier, soldier behavior such as motion, and firing weapons, in addition soldier’s health and location on the war terrain.
+
+ 
+
+Creating a large number of soldier objects is a necessity however it would incur a huge memory cost. Note that although the representation and behavior of a soldier is the same their health and location can vary greatly.
+
+ 
+Flyweight pattern’s Applicability
+
+Apply flyweight pattern when all of the following are true:
+
+    An application uses a large number of objects.
+    Storage costs are high because of the sheer quantity of objects.
+    Most object state can be made extrinsic.
+    Many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed.
+    The application doesn’t depend upon object identity.
+
+ 
+Flyweight pattern’s Structure
+
+The structure of flyweight pattern is shown below:
+
+Flyweight Pattern Structure
+
+ 
+
+Participants
+
+The participants in the flyweight pattern are:
+
+    Flyweight: Declares an interface through which flyweights can receive and act on extrinsic state.
+    ConcreteFlyweight: Implements the Flyweights interface and adds storage for intrinsic state, if any. A ConcreteFlyweight object must be sharable.
+    UnsharedConcreteFlyweight: Not all Flyweight subclasses need to be shared. The Flyweight interface enables sharing, it doesn’t enforce it.
+    FlyweightFactory: Creates and manages flyweight objects. Ensures that flyweights are shared properly.
+    Client: Maintains a reference to flyweight(s). Computes or stores the extrinsic state of flyweight(s).
+
+ 
+Collaborations
+
+    State that a flyweight needs to function must be characterized as either intrinsic or extrinsic. Intrinsic state is stored in the ConcreteFlyweight object; extrinsic state is stored or computed by Client objects. Clients pass this state to the flyweight when they invoke its operations.
+
+ 
+
+    Clients should not instantiate ConcreteFlyweights directly. Clients must obtain ConcreteFlyweight objects exclusively from the FlyweightFactory object to ensure they are shared properly.
+
+ 
+Flyweight pattern’s Consequences
+
+Flyweights may introduce run-time costs associated with transferring, finding, and/or computing extrinsic state, especially if it was formerly stored as intrinsic state. However, such costs are offset by space savings, which increase as more flyweights are shared.
+
+ 
+
+Storage savings are a function of several factors:
+
+    The reduction in the total number of instances that comes from sharing
+    The amount of intrinsic state per object
+    Whether extrinsic state is computed or stored.
+
+ 
+Flyweight pattern’s Implementation
+
+Following issues must be considered while implementing flyweight pattern:
+
+    Removing extrinsic state. The pattern’s applicability is determined largely by how easy it is to identify extrinsic state and remove it from shared objects. Removing extrinsic state won’t help reduce storage costs if there are as many different kinds of extrinsic state as there are objects before sharing.
+
+ 
+
+    Managing shared objects. Because objects are shared, clients shouldn’t instantiate them directly. FlyweightFactory lets clients locate a particular flyweight. FlyweightFactory objects often use an associative store to let clients look up flyweights of interest.
+
+ 
+
+
+
+
+
+Structuring a system into subsystems helps reduce complexity. A common design goal is to minimize the communication and dependencies between subsystems. One way to achieve this goal is to introduce a facade object that provides a single, simplified interface to the more general facilities of a subsystem.
+
+ 
+
+Consider for example a programming environment that gives applications access to its compiler subsystem. This subsystem contains classes such as Scanner, Parser, ProgramNode, BytecodeStream, and ProgramNodeBuilder that implement the compiler. Some specialized applications might need to access these classes directly. But most clients of a compiler generally don’t care about details like parsing and code generation; they merely want to compile some code. For them, the powerful but low-level interfaces in the compiler subsystem only complicate their task.
+
+ 
+
+To provide a higher-level interface that can shield clients from these classes, the compiler subsystem also includes a Compiler class. This class defines a unified interface to the compiler’s functionality. The Compiler class acts as a facade: It offers clients a single, simple interface to the compiler subsystem.
+
+ 
+Façade Pattern’s Applicability
+
+Use façade pattern :
+
+    To provide a simple interface to a complex system.
+    To decouple a subsystem from clients and other subsystems, thereby promoting system independence and portability.
+    To define an entry point to each subsystem level. If subsystems are dependent, then the dependencies can be simplified by making them communicate with each other solely through their façade.
+
+ 
+
+Façade Pattern’s Structure
+
+The structure of façade pattern is shown below:
+
+Facade Pattern Structure
+
+ 
+Participants
+
+The participants in the façade pattern are:
+
+    Façade: Knows which subsystem classes are responsible for a request. Delegates client requests to appropriate subsystem objects.
+    Subsystem classes: Implement subsystem functionality. Handle work assigned by the Façade Have no knowledge of the Façade.
+
+ 
+Collaborations
+
+Clients communicate with the subsystem by sending requests to the Façade, which forwards them to the appropriate subsystem object.
+
+ 
+Façade Pattern’s Consequences
+
+The façade pattern offers the following benefits:
+
+    It shields clients from subsystem components, thereby reducing the number of objects that clients deal with and making the subsystem easier to use.
+
+ 
+
+    It promotes weak coupling between the subsystem and its clients. Often the components in a subsystem are strongly coupled. Weak coupling lets you vary the components of the subsystem without affecting its clients.
+
+ 
+
+    It doesn’t prevent applications from using subsystem classes if they need to. Thus you can choose between ease of use and generality.
+
+ 
+Façade Pattern’s Implementation
+
+Following issues should be considered when implementing façade pattern:
+
+    Reducing client-subsystem coupling: The coupling between clients and the subsystem can be reduced even further by making Facade an abstract class with concrete subclasses for different implementations of a subsystem. Then clients can communicate with the subsystem through the interface of the abstract Facade class. This abstract coupling keeps clients from knowing which implementation of a subsystem is used.
+
+ 
+
+    Public versus private subsystem classes: A subsystem is analogous to a class in that both have interfaces, and both encapsulate something—a class encapsulates state and operations, while a subsystem encapsulates classes. And just as it’s useful to think of the public and private interface of a class, we can think of the public and private interface of a subsystem.
+
+
+
+
+
+
+
+
+Extending an object’s functionality can be done statically (at compile time) by using inheritance however it might be necessary to extend an object’s functionality dynamically (at runtime) as an object is used.
+
+ 
+
+Consider the typical example of a graphical window. To extend the functionality of the graphical window for example by adding a frame to the window would require extending the window class to create a FramedWindow class. To create a framed window it is necessary to create an object of the FramedWindow class. However it would be impossible to start with a plain window and extend its functionality at runtime to become a framed window.
+
+ 
+Decorator pattern’s Applicability
+
+Use decorator:
+
+    To add additional responsibilities to individual objects dynamically and transparently, that is, without affecting other objects.
+    For responsibilities that can be withdrawn.
+    When extension by subclassing is impractical.
+
+ 
+Decorator pattern’s Structure
+
+The structure of decorator pattern is as shown below:
+
+Decorator Pattern Structure
+
+ 
+
+Participants
+
+The participants in the decorator pattern are:
+
+    Component: Defines the interface for objects that can have responsibilities added to them dynamically.
+    ConcreteComponent: Defines an object to which additional responsibilities can be attached.
+    Decorator: Maintains a reference to a component object and defines an interface that conforms to Component’s interface.
+    ConcreteDecorator: Adds responsibilities to the component.
+
+ 
+Collaborations
+
+Decorator forwards requests to its component object. It may optionally perform additional operations before and after forwarding the request.
+
+ 
+Decorator pattern’s Consequences
+
+The decorator pattern has atleast two key benefits and two liabilities:
+
+    More flexibility than static inheritance: The Decorator pattern providesa more flexible way to add responsibilities to objects than can be had withstatic (multiple) inheritance.
+
+ 
+
+    Avoids feature-laden classes high up in the hierarchy: Decorator offersa pay-as-you-go approach to adding responsibilities. Instead of trying tosupport all foreseeable features in a complex, customizable class, you candefine a simple class and add functionality incrementally with Decoratorobjects.
+
+ 
+
+    A decorator and its component aren’t identical: A decorator acts as atransparent enclosure. But from an object identity point of view, adecorated component is not identical to the component itself.
+
+ 
+
+    Lots of little objects: A design that uses Decorator often results in systemscomposed of lots of little objects that all look alike. The objects differonly in the way they are interconnected, not in their class or in the valueof their variables.
+
+ 
+Decorator pattern’s Implementation
+
+Following issues should be considered when applying the decorator pattern:
+
+    Interface conformance: A decorator object’s interface must conform to the interface of the component it decorates. ConcreteDecorator classes must therefore inherit from a common class.
+
+ 
+
+    Omitting the abstract Decorator class: There’s no need to define an abstract Decorator class when you only need to add one responsibility.
+
+ 
+
+    Keeping Component classes lightweight: To ensure a conforming interface, components and decorators must descend from a common Component class. It’s important to keep this common class lightweight; that is, it should focus on defining an interface, not on storing data.
+
+ 
+
+    Changing the skin of an object versus changing its guts: We can think of a decorator as a skin over an object that changes its behavior. An alternative is to change the object’s guts. The Strategy (349) pattern is a good example of a pattern for changing the guts.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Composite Pattern’s Motivation
+
+There are times when a program needs to manipulate a tree data structure and it is necessary to treat both Branches as well as Leaf Nodes uniformly. Consider for example a program that manipulates a file system. A file system is a tree structure that contains Branches which are Folders as well as Leaf nodes which are Files.
+
+ 
+
+Note that a folder object usually contains one or more file or folder objects and thus is a complex object where a file is a simple object. Note also that since files and folders have many operations and attributes in common, such as moving and copying a file or a folder, listing file or folder attributes such as file name and size, it would be easier and more convenient to treat both file and folder objects uniformly by defining a File System Resource Interface.
+
+ 
+Composite Pattern’s Applicability
+
+Use composite pattern when:
+
+    You-want to represent part-whole hierarchies of objects.
+    You want clients to be able to ignore the difference between compositions of objects and individual objects.
+
+ 
+Composite Pattern’s Structure
+
+The structure of composite pattern is as shown below:
+
+Composite Pattern Structure
+
+ 
+Participants
+
+Following are the participants in composite pattern:
+
+    Component: Declares the interface for objects in the composition. Declares an interface for accessing and managing its child components.
+    Leaf: Represents leaf objects in the composition. A leaf has no children. Defines behavior for primitive objects in the composition.
+    Composite: Defines behavior for components having children. Stores child components. Implements child-related operations in the composite
+    Client: Manipulates objects in the composition through the Component
+
+ 
+Collaborations
+
+Clients use the Component class interface to interact with objects in the composite structure.
+
+ 
+Composite Pattern’s Consequences
+
+The composite pattern:
+
+    Defines class hierarchies consisting of primitive objects and composite objects. Primitive objects can be composed into more complex objects, which in turn can be composed, and so on recursively.
+
+ 
+
+    Makes the client simple. Clients can treat composite structures and individual objects uniformly.
+
+ 
+
+    Makes it easier to add new kinds of components. Newly defined Composite or Leaf subclasses work automatically with existing structures and client code.
+
+ 
+
+    Can make your design overly general. The disadvantage of making it easy to add new components is that it makes it harder to restrict the components of a composite. Sometimes you want a composite to have only certain components.
+
+ 
+Composite Pattern’s Implementation
+
+Following are the issues to consider when implementing composite pattern:
+
+    Explicit parent references: Maintaining references from child components to their parent can simplify the traversal and management of a composite structure. The parent reference simplifies moving up the structure and deleting a component. Parent references also help support the Chain of Responsibility pattern.
+
+ 
+
+    Sharing components: It’s often useful to share components, for example, to reduce storage requirements. But when a component can have no more than one parent, sharing components becomes difficult.
+
+ 
+
+    Maximizing the Component interface: One of the goals of the Composite pattern is to make clients unaware of the specific Leaf or Composite classes they’re using. To attain this goal, the Component class should define as many common operations for Composite and Leaf classes as possible. The Component class usually provides default implementations for these operations, and Leaf and Composite subclasses will override them.
+
+ 
+
+    Declaring the child management operations: Although the Composite class implements the Add and Remove operations for managing children, an important issue in the Composite pattern is which classes declare these operations in the Composite class hierarchy.
+
+ 
+
+    Should Component implement a list of Components: You might be tempted to define the set of children as an instance variable in the Component class where the child access and management operations are declared. But putting the child pointer in the base class incurs a space penalty for every leaf, even though a leaf never has children.
+
+ 
+
+    Child ordering: Many designs specify an ordering on the children of Composite. In the earlier Graphics example, ordering may reflect front-to-back ordering. If Composites represent parse trees, then compound statements can be instances of a Composite whose children must be ordered to reflect the program.
+
+ 
+
+    Caching to improve performance: If you need to traverse or search compositions frequently, the Composite class can cache traversal or search information about its children. The Composite can cache actual results or just information that lets it short-circuit the traversal or search.
+
+ 
+
+    Who should delete components: In languages without garbage collection, it’s usually best to make a Composite responsible for deleting its children when it’s destroyed. An exception to this rule is when Leaf objects are immutable and thus can be shared.
+
+ 
+
+    What’s the best data structure for storing components: Composites may use a variety of data structures to store their children, including linked lists, trees, arrays, and hash tables. The choice of data structure depends (as always) on efficiency.
+
+
+

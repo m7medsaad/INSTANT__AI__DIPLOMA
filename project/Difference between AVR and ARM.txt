@@ -1,0 +1,146 @@
+A microcontroller is a small processing device which is primarily designed to perform specific functions within a large system. For example, a microcontroller is used in an air conditioner to automatically control and adjust the temperature of a room.
+
+The main parts that a microcontroller has are: central processing unit (CPU), memory unit, and I/O interfaces. All these components of the microcontroller are formed on a single chip. A microcontroller can be programmed using various programming languages like C language, assembly language, etc. to perform a specific function. Microcontrollers are widely used in a variety of electronic devices, such as medical instruments, manufacturing machinery, robotics, automobiles, home appliances, toys, etc. to automate their operation.
+
+Both AVR and ARM are the types of microcontrollers. The main difference between AVR and ARM is in their bus width, i.e. AVR has a bus width of 8 bits, while ARM has a bus width of 32 bits. In this article, we will discuss the AVR and ARM microcontrollers, and their differences.
+What is an AVR Microcontroller?
+
+AVR is an abbreviation for Alf and Vegard’s RISC processor, also Advanced Virtual RISC. It is named in the honor of its developers, Alf-Egil Bogen and Vegard Wollan. AVR is a RISC (Reduced Instruction Set Computer) based microcontroller architecture. It was first produced by Atmel Corporation in the year of 1997.
+
+The AT90S8515 was the first microcontroller developed based on the AVR microcontroller architecture. AVR microcontrollers have simple instruction sets, making them fast and efficient. The major advantages of AVR microcontrollers include low power consumption, low cost, and high performance. We can use assemble language as well as high-level languages like C, C++, etc. to program these microcontrollers for a specific function.
+
+AVR microcontrollers are widely used in several different applications like robotics, home and office appliances, industrial automation systems, automobiles, etc.
+What is an ARM Microcontroller?
+
+ARM is the abbreviation for Advanced RISC Machine. ARM microcontroller is a 32-bit architecture microcontroller that was developed by Acorn Computers in 1983.
+
+ARM is basically a family of Reduced Instruction Set Computing (RISC) architecture-based microprocessors. ARM microcontrollers consist of ARM processors, RAM, ROM, and I/O peripherals. ARM microcontrollers are used in a wide range of applications due to their low power consumption, low cost, and high performance.
+
+One of the important features of ARM microcontrollers is that they are highly customizable depending on requirements of the applications. Therefore, it is highly versatile microcontroller architecture.
+
+We can use assembly language as well as high level programming languages such as C, C++ to program the ARM microcontrollers. ARM microcontrollers are highly scalable; hence they can be used in several applications, from simple embedded systems to high-end computing systems.
+
+After getting an overview of AVR and ARM individually, let us now discuss their important differences.
+Difference between AVR and ARM
+
+The following table highlights all the major differences between AVR and ARM microcontrollers −
+
+Parameter
+	
+
+AVR Microcontroller
+	
+
+ARM Microcontroller
+
+Basic
+	
+
+AVR stands for "Alf and Vegard’s RISC processor" or "Advanced Virtual RISC".
+	
+
+ARM stands for Advanced RISC Machine.
+
+Bus width
+	
+
+AVR microcontrollers have a bus width of 8 bits. It also available in 32 bits bus width.
+	
+
+ARM microcontrollers have a bus width of 32 bits. It also available in 64 bits.
+
+Developer
+	
+
+AVR microcontroller was developed by Atmel Corporation.
+	
+
+ARM microcontroller was developed by Acorn Computers.
+
+Release date
+	
+
+AVR microcontroller was released in 1997.
+	
+
+ARM microcontroller was released in 1983.
+
+Communication protocols
+	
+
+AVR microcontrollers use UART, USART, SPI, and I2C communication protocols.
+	
+
+ARM Microcontrollers use UART, USART, I2C, I2S, LIN, CAN, USB, Ethernet, SAI, and DSP communication protocols.
+
+Memory
+	
+
+AVR microcontrollers use SRAM, Flash Memory, and EEPROM.
+	
+
+ARM Microcontrollers use SDRAM, Flash Memory, and EEPROM.
+
+Unique features
+	
+
+AVR microcontrollers are known for their low cost and high performance.
+	
+
+ARM microcontrollers are known for their high-speed operation.
+
+Peripherals
+	
+
+AVR microcontrollers have a smaller number of built-in peripherals.
+	
+
+ARM microcontrollers have a greater number of built-in peripherals.
+
+Real time processing
+	
+
+AVR microcontrollers are not much effective in real time processing applications.
+	
+
+ARM microcontrollers are suitable for real time processing applications.
+
+Community
+	
+
+AVR microcontrollers have a very good community to provide support to developers.
+	
+
+ARM microcontrollers have a vast community that is more focused and specialized.
+
+Power consumption
+	
+
+AVR microcontrollers consume less power.
+	
+
+ARM microcontrollers consume slightly more power than AVR.
+
+Cost
+	
+
+AVR microcontrollers are relatively less expensive.
+	
+
+ARM microcontrollers are more expensive than AVR.
+
+Popular microcontrollers
+	
+
+Some popular microcontrollers of AVR family are ATmega 8/16/32, Arduino community, etc.
+	
+
+Some popular microcontrollers of ARM family are ARM Cortex-M0 to ARM Cortex M7, LPC2148, etc.
+
+Applications
+	
+
+AVR microcontrollers are used in applications like robotics, home and office appliances, industrial automation systems, automobiles, etc.
+	
+
+ARM microcontrollers are used in a wide range of applications, from simple embedded systems to high-end computing systems.
